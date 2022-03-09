@@ -1,2 +1,11 @@
+<h1>POST</h1>
 
-<h1> this is sample demonstration for blog development</h1>
+<ul>
+    {% for post in object_list %}
+    <li>
+        {{post.title}} - {{post.author}}<br/>
+        {{post.body}}
+    {% endfor %}    
+
+    </li>
+</ul>

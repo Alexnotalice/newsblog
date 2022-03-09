@@ -1,11 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.forms import Textarea
 
 # Create your models here.
 class Post(models.Model):
     title = models.CharField(max_length=255)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    body = models.TextField
+    body = models.TextField()
 
     def __str__(self):
-        return self.title + ' | ' + self.author
+        return self.title + ' | ' + str(self.author)
