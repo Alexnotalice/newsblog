@@ -1,18 +1,39 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
-<h1>POST test at Ubuntu</h1>
+<h1>Leave your post</h1>
 
 <ul>
     {% for post in object_list %}
-    <li><a href="{% url 'article-detail' post.pk %}">{{post.title}}</a>
-         {{post.author}}<small><a href="{% url 'update_post' post.pk %}">(edit)</a></small>
-         <small><a href="{% url 'delete_post' post.pk %}">(Delete)</a></small>
-         <br/>
-        {{post.body}}
+    <li><a href="{% url 'article-detail' post.pk %}">
+        {{post.title}}</a>
+        {{post.author}}
+        {{post.post_date}}
+          {% if user.is_authenticated %}   
+            {% if user.id == post.author.id %} 
+              <small>
+              <a href="{% url 'update_post' post.pk %}">(edit)</a>
+              <a href="{% url 'delete_post' post.pk %}">(Delete)</a>
+              </small>
+            {% endif %}
+            <br/>
+            {{post.body|slice:":100"}}
+          {% endif %}
     {% endfor %}    
 
     </li>
 </ul>
+<!-- <div style="border:red solid 1px">我是DIV</div>
+<div style="border:red solid 1px">我是DIV</div>
+<p style="border:yellow solid 1px">我是P</p>
+<p style="border:yellow solid 1px">我是P</p>
+<span style="border:blue solid 1px">我是SPAN</span>
+<span style="border:blue solid 1px">我是SPAN</span>
+<section style="border:green solid 1px">我是SECTION</section>
+<section style="border:green solid 1px">我是SECTION</section> -->
+{% include 'news.html' %}
 
 {% endblock %}
+
+

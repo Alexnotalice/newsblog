@@ -3,12 +3,16 @@
 
 <h1>Delete post</h1> 
 
-
-<form method="post">
-    <br>
-    {% csrf_token %}
-    <strong>Are u sure?</strong>
-    <button>Delete</button>
-
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %} 
+        <form method="post">
+        <br>
+        {% csrf_token %}
+        <strong>Are u sure?</strong>
+        <button>Delete</button>
+    {% endif %}
+{% else %}      
+    <h2>You are allowed to execute after login!</h2>    
+{% endif %}
 
 {% endblock %}
