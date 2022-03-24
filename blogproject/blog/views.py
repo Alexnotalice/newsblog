@@ -4,13 +4,14 @@ from django.template import TemplateSyntaxError
 from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
 from blog.models import Post
 from django.urls import reverse_lazy
+from .forms import PostForm
 
 # Create your views here.
 #def home(request):
 #    return render(request,'home.html',{})
 
 class HomeView(ListView):
-    model = Post
+    model = Post    
     template_name = 'home.html'
     ordering = ['-id']
 
@@ -20,8 +21,9 @@ class ArticleDetailView(DetailView):
 
 class AddPostView(CreateView):
     model = Post
+    form_class = PostForm
     template_name = 'add_post.html'
-    fields ='__all__'
+    #fields ='__all__'
     
     
 class UpdatePostView(UpdateView):
