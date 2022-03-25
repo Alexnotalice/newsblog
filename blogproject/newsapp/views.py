@@ -1,5 +1,8 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 import requests
+
+
 
 
 # Create your views here.
@@ -11,10 +14,19 @@ def web_data(request):
     description = []
     image = []
     url = []
-    for i in data:
+    count=0
+    for i in data:              
         title.append(i['title'])
         description.append(i['description'])
         image.append(i['image'])
         url.append(i['url'])
-    news = zip(title, description, image, url)
-    return render(request, 'news.html', {'news':news})
+        count+=1
+        if count == 3:
+            break
+
+   
+    news = zip(title, description, image, url)  
+  
+    return render(request, 'news.html',{'news':news})
+
+    
