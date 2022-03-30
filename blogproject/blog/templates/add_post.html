@@ -10,11 +10,7 @@
             {{form.as_p}}
             <button>Save</button>    
     </div>
-    <script>
-        var name = "{{ user.username }}";
-        document.getElementById("elder").placeholder = name;
-    </script>
-
+    
 {% else %}      
     <h2>You are allowed to execute after login!</h2>    
 {% endif %}

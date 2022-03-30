@@ -2,12 +2,12 @@
 
 {% block content %}
 {% include 'news.html' %}
-<h1>凡走過必留下意見</h1>
+<h1 class="py-5 text-center container">凡走過必留下意見</h1>
 <ul>
     {% for post in object_list %}
     <li><a href="{% url 'article-detail' post.pk %}">
-        {{post.title}}</a>
-        {{post.author}} 發表意見於
+        <strong>{{post.title}}</strong></a>
+        留言者 : {{post.author}} 發表意見於
         {{post.post_date}}
           {% if user.is_authenticated %}   
             {% if user.id == post.author.id %} 
@@ -16,7 +16,7 @@
               <a href="{% url 'delete_post' post.pk %}">(Delete)</a>
               </small>
             {% endif %}
-            <br/>
+            <br>
             {{post.body|slice:":100"}}
           {% endif %}
     {% endfor %}    

@@ -9,6 +9,11 @@
       {% csrf_token %}
       {{form.as_p}}
       <button>Edit</button>
+      <script>
+        var name = "{{ user.username }}";
+        document.getElementById("elder").placeholder = name;
+      </script>
+
     {% endif %}
 {% else %}      
     <h2>You are allowed to execute after login!</h2> 

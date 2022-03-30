@@ -8,6 +8,17 @@ class PostForm(forms.ModelForm):
         widgets ={
             'title' : forms.TextInput(attrs={'class':'form-control'}),
             'title_tag' : forms.TextInput(attrs={'class':'form-control'}),
-            'author' : forms.TextInput(attrs={'class':'form-control','placeholder':'','id':'elder','type':'hidden'}),
+            'author' : forms.TextInput(attrs={'class':'form-control','placeholder':'','id':'elder'}),
+            'body' : forms.Textarea(attrs={'class':'form-control'}),
+        }
+
+class EditForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ('title','title_tag','body')
+        widgets ={
+            'title' : forms.TextInput(attrs={'class':'form-control'}),
+            'title_tag' : forms.TextInput(attrs={'class':'form-control'}),
+            #'author' : forms.TextInput(attrs={'class':'form-control','placeholder':'','id':'elder','type':'hidden'}),
             'body' : forms.Textarea(attrs={'class':'form-control'}),
         }

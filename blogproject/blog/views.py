@@ -4,38 +4,37 @@ from django.template import Context, TemplateSyntaxError
 from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
 from blog.models import Post
 from django.urls import reverse_lazy
-from .forms import PostForm
+from .forms import PostForm,EditForm
 import requests
 
 # Create your views here.
 #def home(request):
 #    return render(request,'home.html',{})
 
-# class HomeView(ListView):
-#     model = Post    
-#     template_name = 'home.html'
-#     ordering = ['-id']
+
 
 def web_data():
-        r = requests.get('http://api.mediastack.com/v1/news?access_key=212e9c74b6cf77879522202b4ebbbce5&keywords =basketball&countries=us')
+        r = requests.get('http://api.mediastack.com/v1/news?access_key=212e9c74b6cf77879522202b4ebbbce5&keywords=covid&countries=us&limit=3')
         req = r.json()
         data = req['data']
         title = []
         description = []
-        image = []
+        #image = []
         url = []
         count=0
         for i in data:              
             title.append(i['title'])
             description.append(i['description'])
-            image.append(i['image'])
+            #image.append(i['image'])
             url.append(i['url'])
             count+=1
             if count == 3:
                 break
 
     
-        news = zip(title, description, image, url)  
+        #news = zip(title, description, image, url)  
+        #<img src="{{ image }}"  width="100%" height="225"
+        news = zip(title, description, url)  
         return news
 
 new=web_data()
@@ -52,14 +51,15 @@ class ArticleDetailView(DetailView):
 
 class AddPostView(CreateView):
     model = Post
-    form_class = PostForm
+    fields =['title','title_tag','author','body']
     template_name = 'add_post.html'
+    #form_class = PostForm
      
     
 class UpdatePostView(UpdateView):
     model = Post
-    template_name = 'update_post.html'
-    fields =['title','title_tag','body']
+    template_name = 'update_post.html'    
+    form_class = EditForm
 
 class DeletePostView(DeleteView):
     model = Post
