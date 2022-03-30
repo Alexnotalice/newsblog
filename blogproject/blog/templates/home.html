@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
-<h1>Leave your post</h1>
-
+{% include 'news.html' %}
+<h1>凡走過必留下意見</h1>
 <ul>
     {% for post in object_list %}
     <li><a href="{% url 'article-detail' post.pk %}">
         {{post.title}}</a>
-        {{post.author}}
+        {{post.author}} 發表意見於
         {{post.post_date}}
           {% if user.is_authenticated %}   
             {% if user.id == post.author.id %} 
@@ -25,7 +24,7 @@
     </li>
 </ul>
 
-{% include 'news.html' %}
+
 
 {% endblock %}
 
