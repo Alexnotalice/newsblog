@@ -7,7 +7,7 @@ import requests
 
 # Create your views here.
 def web_data(request):
-    r = requests.get('http://api.mediastack.com/v1/news?access_key=f24ef91f76da924b999bb246fa72d85a&countries=us')
+    r = requests.get('http://api.mediastack.com/v1/news?access_key=d19b1f74e4cc9f961a6d30afa7d2ed44&sources=en&sources=cnn,-bbc')
     req = r.json()
     data = req['data']
     title = []
@@ -23,10 +23,9 @@ def web_data(request):
         count+=1
         if count == 3:
             break
-
    
     newsapi = zip(title, description, image, url)  
-    #news = zip(title, description, url)  
+     
   
     return render(request, 'cnews.html',{'newsapi':newsapi})
 
