@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% include 'news.html' %}
+
 <h1 class="py-5 text-center container">凡走過必留下意見</h1>
+
 <ul>
     {% for post in object_list %}
     <li><a href="{% url 'article-detail' post.pk %}">
@@ -22,10 +23,13 @@
     {% endfor %}    
 
     </li>
+  <ol>
+    <li class="lead text-muted">訪客可用 ID: user101 key:abc123use 取的留言權限或自行註冊帳號</li>
+    <li class="lead text-muted">留言內容觀看/新增／修改／刪除需登入帳號</li>
+    <li class="lead text-muted">左上bar的"世界新聞"連結美國的新聞api</li>
+    <li class="lead text-muted">世界新聞網頁採用mediastack提供api有限數量連結限制若沒有顯示資料代表站長額度用完</li>
+  </ol>
 </ul>
-
-
-
 {% endblock %}
 
 

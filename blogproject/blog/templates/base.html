@@ -13,7 +13,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark"  style="background-color: #1a669c;">
         <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'home' %}">Alex's 不拉格</a>
+          <a class="navbar-brand" href="{% url 'home' %}">Alex's 布拉格</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -23,6 +23,9 @@
               <!-- <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li> -->
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'cnews' %}">世界新聞</a>
+              </li>
               
               {% if user.is_authenticated %}
                 <li class="nav-item">

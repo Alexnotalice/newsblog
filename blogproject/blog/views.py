@@ -13,36 +13,41 @@ import requests
 
 
 
-def web_data():
-        r = requests.get('http://api.mediastack.com/v1/news?access_key=212e9c74b6cf77879522202b4ebbbce5&keywords=covid&countries=us&limit=3')
-        req = r.json()
-        data = req['data']
-        title = []
-        description = []
-        #image = []
-        url = []
-        count=0
-        for i in data:              
-            title.append(i['title'])
-            description.append(i['description'])
-            #image.append(i['image'])
-            url.append(i['url'])
-            count+=1
-            if count == 3:
-                break
+# def web_data():
+#         r = requests.get('http://api.mediastack.com/v1/news?access_key=f24ef91f76da924b999bb246fa72d85a&countries=us')
+#         req = r.json()
+#         data = req['data']
+#         title = []
+#         description = []
+#         image = []
+#         url = []
+#         count=0
+#         for i in data:              
+#             title.append(i['title'])
+#             description.append(i['description'])
+#             image.append(i['image'])
+#             url.append(i['url'])
+#             count+=1
+#             if count == 3:
+#                 break
 
     
-        #news = zip(title, description, image, url)  
-        #<img src="{{ image }}"  width="100%" height="225"
-        news = zip(title, description, url)  
-        return news
+#         newsapi = zip(title, description, image, url)  
+        
+#         #news = zip(title, description, url)  
+#         return newsapi
 
-new=web_data()
-def HomeView(request):
-	model = Post.objects.all()
+# newapi=web_data()
+class HomeView(ListView):
+    model = Post
+    template_name = 'home.html'
+    fields='__all__'
+	# model = Post.objects.all()
  
-	context = {'object_list':model,'news':new}    
-	return render(request, 'home.html',context)
+	# context = {'object_list':model,'news':newapi}    
+	# return render(request, 'home.html',context)
+
+  
 
 
 class ArticleDetailView(DetailView):
