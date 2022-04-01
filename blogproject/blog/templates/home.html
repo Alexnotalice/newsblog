@@ -17,9 +17,10 @@
               <a href="{% url 'delete_post' post.pk %}">(Delete)</a>
               </small>
             {% endif %}
+            {% endif %}
             <br>
             {{post.body|slice:":100"}}
-          {% endif %}
+          
     {% endfor %}    
 
     </li>
